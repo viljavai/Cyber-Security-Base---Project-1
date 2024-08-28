@@ -29,7 +29,7 @@ end
 # unset irrelevant variables
 deactivate nondestructive
 
-set -gx VIRTUAL_ENV "/home/vaivilja/Elainbongailu_app/venv"
+set -gx VIRTUAL_ENV "/home/vaivilja/Cyber-Security-Base---Project-1/venv"
 
 set -gx _OLD_VIRTUAL_PATH $PATH
 set -gx PATH "$VIRTUAL_ENV/bin" $PATH
