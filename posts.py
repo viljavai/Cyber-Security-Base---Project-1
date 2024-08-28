@@ -56,13 +56,19 @@ def forumfeed():
     result = db.session.execute(sql)
     return result.fetchall()
 
-def comment(body):
-    sql = "INSERT INTO comments (post_id, user_id, body) VALUES ("
-
+#A03:2021 – Injection
+#-----------------------------------------------------------------------------
 def search(query):
-    sql = ("SELECT * FROM posts JOIN users ON (posts.user_id=users.id) WHERE posts.visible=True AND lower(posts.animals) LIKE lower(:query) OR lower(posts.city) LIKE lower(:query) OR users.username LIKE :query OR CAST(timedate AS text) like :query")
-    result = db.session.execute(sql, {"query":"%"+query+"%"})
+    sql = (
+        "SELECT * FROM posts JOIN users ON (posts.user_id=users.id) "
+        "WHERE posts.visible=True AND (posts.animals = '" + query + "' "
+        "OR posts.city = '" + query + "' "
+        "OR users.username = '" + query + "')"
+    )
+    # sql = ("SELECT * FROM posts JOIN users ON (posts.user_id=users.id) WHERE posts.visible=True AND lower(posts.animals) LIKE lower(:query) OR lower(posts.city) LIKE lower(:query) OR users.username LIKE :query OR CAST(timedate AS text) like :query")
+    result = db.session.execute(sql)
     return result.fetchall()
+#-----------------------------------------------------------------------------
 
 def delete_post(id):
     sql = "UPDATE posts SET visible = False WHERE id=:id"
