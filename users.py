@@ -3,8 +3,6 @@ from db import db
 from flask import session
 #from werkzeug.security import check_password_hash, generate_password_hash
 
-#A02:2021 – Cryptographic Failures 
-#-----------------------------------------------------------------------------
 def login(username,password):
     sql = "SELECT id, password FROM users WHERE username=:username"
     result = db.session.execute(sql, {"username":username})
@@ -19,11 +17,12 @@ def login(username,password):
             return True
         else:
             return False
-#-----------------------------------------------------------------------------
 
 def logout():
     del session["user_id"]
 
+#A02:2021 – Cryptographic Failures 
+#-----------------------------------------------------------------------------
 def register(username,password):
     #hash_value = generate_password_hash(password)
     try:
@@ -34,6 +33,7 @@ def register(username,password):
     except:
         return False
     return login(username,password)
+#-----------------------------------------------------------------------------
 
 def get_my_id():
     return session.get("user_id",0)
