@@ -81,11 +81,28 @@ def fixed_search(query):
 """
 #-----------------------------------------------------------------------------
 
+#A01:2021 – Broken Access Control
+#-----------------------------------------------------------------------------
 def delete_post(id):
     sql = "UPDATE posts SET visible = False WHERE id=:id"
     db.session.execute(sql, {"id":id})
     db.session.commit()
     return True
+
+"""
+def delete_post(id):
+    sql = "SELECT user_id FROM posts WHERE id=:id"
+    post = db.session.execute(sql, {"id": id}).fetchone()
+
+    if post.user_id != users.get_my_id():
+        return False
+    
+    sql = "UPDATE posts SET visible = False WHERE id=:id"
+    db.session.execute(sql, {"id":id})
+    db.session.commit()
+    return True
+"""
+#-----------------------------------------------------------------------------
 
 def delete_forum_post(id):
     sql = "UPDATE forumposts SET visible = False WHERE id=:id"
