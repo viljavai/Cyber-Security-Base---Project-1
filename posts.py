@@ -90,7 +90,7 @@ def delete_post(id):
     return True
 
 """
-def delete_post(id):
+def fixed_delete_post(id):
     sql = "SELECT user_id FROM posts WHERE id=:id"
     post = db.session.execute(sql, {"id": id}).fetchone()
 

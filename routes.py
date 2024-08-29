@@ -1,14 +1,16 @@
 from app import app
 from flask import render_template, request, redirect, session
+#from flask_limiter import Limiter
+#from flask_limiter.util import get_remote_address
 from os import getenv
 import posts, users
 from datetime import date
 import db
 
-#---------------------------------------------
-# käyttäjätilien toiminnallisuus
-
+#A07:2021 – Identification and Authentication Failures
+#-----------------------------------------------------------------------------
 @app.route("/login", methods=["GET", "POST"])
+#@limiter.limit("10 per minute")
 def login():
     if request.method == "GET":
         return render_template("login.html")
@@ -19,6 +21,7 @@ def login():
             return redirect("/")
         else:
             return render_template("error.html", message="Väärä käyttäjätunnus tai salasana")
+#-----------------------------------------------------------------------------
 
 @app.route("/logout")
 def logout():
