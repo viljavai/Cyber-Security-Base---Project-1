@@ -20,6 +20,9 @@ Make sure you have Postgresql downloaded.
 
 3. Set up database \
 `createdb user` \
-`psql -U {your system username} -d user -f schema.sql` \
+`psql -U {your system username} -d user -f schema.sql` 
+
+4. Start up application \
+`flask run`
 
 Now the web application should be running at http://127.0.0.1:5000/

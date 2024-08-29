@@ -61,13 +61,24 @@ def forumfeed():
 def search(query):
     sql = (
         "SELECT * FROM posts JOIN users ON (posts.user_id=users.id) "
-        "WHERE posts.visible=True AND (posts.animals = '" + query + "' "
+        "WHERE posts.visible=True AND posts.animals = '" + query + "' "
         "OR posts.city = '" + query + "' "
-        "OR users.username = '" + query + "')"
+        "OR users.username = '" + query + "'"
     )
-    # sql = ("SELECT * FROM posts JOIN users ON (posts.user_id=users.id) WHERE posts.visible=True AND lower(posts.animals) LIKE lower(:query) OR lower(posts.city) LIKE lower(:query) OR users.username LIKE :query OR CAST(timedate AS text) like :query")
     result = db.session.execute(sql)
+    #print(sql)
     return result.fetchall()
+
+"""
+def fixed_search(query):
+    sql = (
+        "SELECT * FROM posts JOIN users ON (posts.user_id=users.id) "
+        "WHERE posts.visible=True AND posts.animals = :query "
+        "OR posts.city = :query OR users.username = :query "
+    )
+    result = db.session.execute(sql, {"query": query})
+    return result.fetchall()
+"""
 #-----------------------------------------------------------------------------
 
 def delete_post(id):
