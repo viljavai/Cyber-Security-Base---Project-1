@@ -1,9 +1,11 @@
-# Tietokantasovellus
-Kyseessä on eläinbongailussa hyödynnettävä sovellus. 
-- Käyttäjä voi kirjautua sisään ja postata sivustolle päivityksen, josta ilmenee havaitut lajit, havaintoaika, sijainti ja haluttaessa kuva ja muuta tietoa. 
-- Muut käyttäjät voivat kommentoida postausta tai tykätä siitä. 
-- Käyttäjä voi hakea sivustolta postauksia lajin, kaupungin, ajankohdan tai käyttäjän perusteella. 
-- Yksittäisen käyttäjän sivulla näkyy käyttäjän tekemät postaukset.
+The project is a simple web application  built with the flask framework and running postgresql in the backend. The application includes functionality for the following: 
+
+- User login and user profiles 
+- Logged in user can make a post to postfeed and messageboard. 
+- Logged in user can delete their own post or message. 
+- Logged in user can comment on posts and messages. 
+- User can search for posts. 
+- The website has a feed showing all posts and a messageboard showing all topics. 
 
 # How to use
 After cloning the repo, follow these steps. \
