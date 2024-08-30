@@ -16,6 +16,7 @@ Kommentoi käyttäjän {{ post.username }} havaintoa:<br>
 
 <div>
     <form action="/sendcomment/{{ post.id }}" method="post">
+    <!--{{ csrf_token() }}-->
     Kirjoita viesti: <br>
     <textarea name="body" rows="6" cols="60"></textarea>
     <br>

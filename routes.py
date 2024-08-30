@@ -2,6 +2,7 @@ from app import app
 from flask import render_template, request, redirect, session
 #from flask_limiter import Limiter
 #from flask_limiter.util import get_remote_address
+#from flask_wtf import CSRFProtect
 from os import getenv
 import posts, users
 from datetime import date
@@ -79,6 +80,8 @@ def comments(id):
     commentfeed = posts.commentfeed(id)
     return render_template("commentfeed.html", commentfeed=commentfeed)
 
+# CSRF
+#-----------------------------------------------------------------------------
 @app.route("/sendcomment/<int:id>", methods=["POST"])
 def sendcomment(id):
     postid = id
@@ -89,6 +92,7 @@ def sendcomment(id):
         return redirect("/")
     else:
         return render_template("error.html", message="Kommentin lähetys ei onnistunut!")
+#-----------------------------------------------------------------------------
 
 @app.route("/send", methods=["POST"])
 def send():
@@ -161,8 +165,6 @@ def sendprofile():
     else:
         return render_template("error.html", message="Profiilin muokkaus ei onnistunut!")
 
-#-------------------------------------------------
-#foorumin toiminnallisuus
 
 @app.route("/postforum", methods=["POST"])
 def postforum():
