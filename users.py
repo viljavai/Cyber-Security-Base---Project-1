@@ -33,7 +33,6 @@ def register(username,password):
     except:
         return False
     return login(username,password)
-#-----------------------------------------------------------------------------
 
 def get_my_id():
     return session.get("user_id",0)
