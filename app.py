@@ -6,8 +6,11 @@ from os import getenv
 
 app = Flask(__name__)
 app.secret_key = "SECRET_KEY"
-#csrf = CSRFProtect(app)
 
+#Flaw 5 fixed, CSRF
+#-------------------------------
+#csrf = CSRFProtect(app)
+#-------------------------------
 
 """
 limiter = Limiter(
